@@ -1,7 +1,7 @@
 import { Text, Image, TextInput, Button } from "react-native";
 import { useQuery } from "@apollo/client";
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import { useState } from "react";
 
 import { GET_RANDOM_CHARACTER } from "../graphql/queries/characters";
 import { styles } from "../styles/GameScreen.styles";
@@ -9,14 +9,14 @@ import { NavigationProp } from "../types";
 
 const TOTAL_QUESTIONS = 10;
 
-export const GameScreen = () => {
+export const GuessingGameScreen = () => {
   const navigation = useNavigation<NavigationProp>();
 
-  const [guess, onChangeGuess] = React.useState("");
-  const [score, setScore] = React.useState(0);
-  const [currentQuestion, setCurrentQuestion] = React.useState(1);
-  const [feedback, setFeedback] = React.useState("");
-  const [randomId, setRandomId] = React.useState(
+  const [guess, onChangeGuess] = useState("");
+  const [score, setScore] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [feedback, setFeedback] = useState("");
+  const [randomId, setRandomId] = useState(
     () => Math.floor(Math.random() * 826) + 1
   );
 
