@@ -1,12 +1,24 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { ApolloProvider } from "@apollo/client";
+import { StyleSheet } from "react-native";
+import { createStaticNavigation } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import client from "./graphql/apolloClient";
+import { HomeScreen } from "./screens/HomeScreen";
+
+const RootStack = createNativeStackNavigator({
+  screens: {
+    Home: HomeScreen,
+  },
+});
+
+const Navigation = createStaticNavigation(RootStack);
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ApolloProvider client={client}>
+      <Navigation />
+    </ApolloProvider>
   );
 }
 
