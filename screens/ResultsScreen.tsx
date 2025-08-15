@@ -1,4 +1,6 @@
 import { Text } from "react-native";
+import { TOTAL_QUESTIONS } from "../constants";
+import { useGame } from "../context/GameContext";
 
 type Props = {
   route: {
@@ -10,11 +12,11 @@ type Props = {
 };
 
 export const ResultsScreen = ({ route }: Props) => {
-  const { finalScore, totalQuestions } = route.params;
+  const { score } = useGame();
 
   return (
     <Text>
-      Final score: {finalScore} out of {totalQuestions}
+      Final score: {score} out of {TOTAL_QUESTIONS}
     </Text>
   );
 };

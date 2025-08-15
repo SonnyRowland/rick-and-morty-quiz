@@ -3,11 +3,14 @@ import { StyleSheet } from "react-native";
 
 import client from "./graphql/apolloClient";
 import { Navigation } from "./navigation/RootNavigator";
+import { GameProvider } from "./context/GameContext";
 
 export default function App() {
   return (
     <ApolloProvider client={client}>
-      <Navigation />
+      <GameProvider>
+        <Navigation />
+      </GameProvider>
     </ApolloProvider>
   );
 }

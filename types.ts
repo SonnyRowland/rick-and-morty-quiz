@@ -19,6 +19,8 @@ export type EpisodeType = {
 
 export type QuestionType = "firstEpisode";
 
+export type Difficulty = "easy" | "medium" | "hard";
+
 export type GameQuestion = {
   id: string;
   type: QuestionType;
@@ -31,8 +33,9 @@ export type GameQuestion = {
 export type RootStackParamList = {
   Home: undefined;
   Game: undefined;
-  Results: { finalScore: number; totalQuestions: number };
+  Results: undefined;
   Trivia: undefined;
+  Difficulty: undefined;
   Characters: undefined;
 };
 
