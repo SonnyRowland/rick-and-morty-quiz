@@ -4,6 +4,7 @@ import { HomeScreen } from "../screens/HomeScreen";
 import { GuessingGameScreen } from "../screens/GuessingGameScreen";
 import { ResultsScreen } from "../screens/ResultsScreen";
 import { TriviaScreen } from "../screens/TriviaScreen";
+import { CharactersScreen } from "../screens/CharactersScreen";
 
 const RootStack = createNativeStackNavigator({
   screens: {
@@ -11,6 +12,7 @@ const RootStack = createNativeStackNavigator({
     Game: { screen: GuessingGameScreen },
     Trivia: { screen: TriviaScreen },
     Results: { screen: ResultsScreen },
+    Characters: { screen: CharactersScreen },
   },
 });
 
