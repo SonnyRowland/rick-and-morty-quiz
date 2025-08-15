@@ -1,16 +1,10 @@
-import { Text } from "react-native";
-import { useQuery } from "@apollo/client";
-import { GET_CHARACTER_NAME_LOCATION } from "../graphql/queries/characters";
+import { Button } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-const characterId = "12";
+import { NavigationProp } from "../types";
 
 export const HomeScreen = () => {
-  const { data, loading, error } = useQuery(GET_CHARACTER_NAME_LOCATION, {
-    variables: { id: characterId },
-  });
+  const navigation = useNavigation<NavigationProp>();
 
-  if (loading) return <Text>Loading...</Text>;
-  if (error) return <Text>Error : {error.message}</Text>;
-
-  return <Text>{JSON.stringify(data, null, 2)}</Text>;
+  return <Button onPress={() => navigation.navigate("Game")} title="Vamos" />;
 };
