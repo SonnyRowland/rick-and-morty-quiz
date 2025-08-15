@@ -1,13 +1,15 @@
 import { createStaticNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { HomeScreen } from "../screens/HomeScreen";
-import { GameScreen } from "../screens/GameScreen";
+import { GuessingGameScreen } from "../screens/GuessingGameScreen";
 import { ResultsScreen } from "../screens/ResultsScreen";
+import { TriviaScreen } from "../screens/TriviaScreen";
 
 const RootStack = createNativeStackNavigator({
   screens: {
     Home: { screen: HomeScreen },
-    Game: { screen: GameScreen },
+    Game: { screen: GuessingGameScreen },
+    Trivia: { screen: TriviaScreen },
     Results: { screen: ResultsScreen },
   },
 });

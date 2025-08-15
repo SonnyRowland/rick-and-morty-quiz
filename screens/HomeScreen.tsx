@@ -6,5 +6,14 @@ import { NavigationProp } from "../types";
 export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProp>();
 
-  return <Button onPress={() => navigation.navigate("Game")} title="Vamos" />;
+  return (
+    <>
+      <Button
+        onPress={() => navigation.navigate("Game")}
+        title="Guessing Game"
+      />
+      ;
+      <Button onPress={() => navigation.navigate("Trivia")} title="Trivia" />;
+    </>
+  );
 };
