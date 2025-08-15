@@ -12,11 +12,11 @@ export const HomeScreen = () => {
         onPress={() => navigation.navigate("Game")}
         title="Guessing Game"
       />
-      ;
       <Button onPress={() => navigation.navigate("Trivia")} title="Trivia" />;
       <Button
         onPress={() => navigation.navigate("Characters")}
-        title="View all characters"
+        title="View All Characters
+        "
       />
     </>
   );
