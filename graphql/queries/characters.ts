@@ -29,12 +29,3 @@ export const GET_CHARACTERS_BY_PAGE = gql`
     }
   }
 `;
-
-export const GET_RANDOM_CHARACTER = gql`
-  query GetRandomCharacter($id: ID!) {
-    character(id: $id) {
-      name
-      image
-    }
-  }
-`;
