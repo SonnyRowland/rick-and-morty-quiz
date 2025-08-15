@@ -12,10 +12,6 @@ export const GET_RANDOM_CHARACTER = gql`
 export const GET_CHARACTERS_BY_PAGE = gql`
   query GetCharactersByPage($page: Int) {
     characters(page: $page) {
-      info {
-        pages
-        count
-      }
       results {
         id
         name

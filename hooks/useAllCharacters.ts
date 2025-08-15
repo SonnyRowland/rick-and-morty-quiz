@@ -1,20 +1,12 @@
 import { useEffect, useState } from "react";
 import client from "../graphql/apolloClient";
 import { GET_CHARACTERS_BY_PAGE } from "../graphql/queries/characters";
+import { CharacterType } from "../types";
 
 const TOTAL_PAGES = 42;
 
-type ResultsType = {
-  id: string;
-  name: string;
-  image: string;
-  species: string;
-  status: string;
-  episode: { id: string }[];
-};
-
 export const useAllCharacters = () => {
-  const [allCharacters, setAllCharacters] = useState<ResultsType[]>([]);
+  const [allCharacters, setAllCharacters] = useState<CharacterType[]>([]);
 
   useEffect(() => {
     const fetchAllPages = async () => {
