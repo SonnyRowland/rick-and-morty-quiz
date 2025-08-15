@@ -12,3 +12,12 @@ export const GET_CHARACTER_NAME_LOCATION = gql`
     }
   }
 `;
+
+export const GET_RANDOM_CHARACTER = gql`
+  query GetRandomCharacter($id: ID!) {
+    character(id: $id) {
+      name
+      image
+    }
+  }
+`;
