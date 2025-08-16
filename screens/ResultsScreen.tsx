@@ -1,22 +1,27 @@
-import { Text } from "react-native";
+import { Text, Button } from "react-native";
 import { TOTAL_QUESTIONS } from "../constants";
 import { useGame } from "../context/GameContext";
+import { useNavigation } from "@react-navigation/native";
+import { NavigationProp } from "../types";
 
-type Props = {
-  route: {
-    params: {
-      finalScore: number;
-      totalQuestions: number;
-    };
+export const ResultsScreen = () => {
+  const { score, resetGame } = useGame();
+  const navigator = useNavigation<NavigationProp>();
+
+  const handleHomePress = () => {
+    resetGame();
+    navigator.reset({
+      index: 0,
+      routes: [{ name: "Home" }],
+    });
   };
-};
-
-export const ResultsScreen = ({ route }: Props) => {
-  const { score } = useGame();
 
   return (
-    <Text>
-      Final score: {score} out of {TOTAL_QUESTIONS}
-    </Text>
+    <>
+      <Text>
+        Final score: {score} out of {TOTAL_QUESTIONS}
+      </Text>
+      <Button title="Home" onPress={handleHomePress} />
+    </>
   );
 };

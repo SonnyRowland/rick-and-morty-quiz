@@ -1,5 +1,5 @@
 import { Button, ScrollView, Text } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useAllCharacters } from "../hooks/useAllCharacters";
 import { getCharacters } from "../utils/characterFilters";
@@ -22,6 +22,13 @@ export const TriviaScreen = () => {
   const { allCharacters } = useAllCharacters();
   const { allEpisodes } = useAllEpisodes();
 
+  useEffect(() => {
+    if (allCharacters.length > 0 && allEpisodes.length > 0) {
+      generateNewQuestion();
+      setQuestionNumber(1);
+    }
+  }, [allCharacters, allEpisodes]);
+
   if (allCharacters.length === 0 || allEpisodes.length === 0) {
     return <Text>Loading...</Text>;
   }
@@ -39,6 +46,10 @@ export const TriviaScreen = () => {
   };
 
   const handleAnswer = (answer: string) => {
+    if (questionNumber >= TOTAL_QUESTIONS) {
+      navigator.navigate("Results");
+    }
+
     setQuestionNumber((prev) => prev + 1);
     if (answer === question?.correctAnswer) {
       setScore(score + 1);
@@ -47,14 +58,11 @@ export const TriviaScreen = () => {
       setFeedback("WRONG WRONG WRONG");
     }
 
-    if (questionNumber - 1 >= TOTAL_QUESTIONS) {
-      navigator.navigate("Results");
-    }
+    generateNewQuestion();
   };
 
   return (
     <ScrollView>
-      <Button onPress={generateNewQuestion} title="Generate question" />
       <Text>Current Question: {questionNumber}</Text>
       {question && (
         <>
