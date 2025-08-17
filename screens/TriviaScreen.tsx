@@ -11,7 +11,14 @@ import { TOTAL_QUESTIONS } from "../constants";
 import { useNavigation } from "@react-navigation/native";
 
 export const TriviaScreen = () => {
-  const { difficulty, score, setScore } = useGame();
+  const {
+    difficulty,
+    score,
+    setScore,
+    availableCharacters,
+    setAvailableCharacters,
+    removeCharacter,
+  } = useGame();
   const navigator = useNavigation<NavigationProp>();
 
   const [question, setQuestion] = useState<GameQuestion | null>(null);
@@ -24,19 +31,33 @@ export const TriviaScreen = () => {
 
   useEffect(() => {
     if (allCharacters.length > 0 && allEpisodes.length > 0) {
-      generateNewQuestion();
+      const characters = getCharacters(allCharacters, difficulty);
+      setAvailableCharacters(characters);
       setQuestionNumber(1);
     }
-  }, [allCharacters, allEpisodes]);
+  }, [allCharacters, allEpisodes, difficulty]);
 
-  if (allCharacters.length === 0 || allEpisodes.length === 0) {
+  useEffect(() => {
+    if (availableCharacters.length > 0 && allEpisodes.length > 0) {
+      generateNewQuestion();
+    }
+  }, [availableCharacters, allEpisodes]);
+
+  if (
+    allCharacters.length === 0 ||
+    allEpisodes.length === 0 ||
+    availableCharacters.length === 0
+  ) {
     return <Text>Loading...</Text>;
   }
 
-  const characters = getCharacters(allCharacters, difficulty);
-
   const generateNewQuestion = () => {
-    const question = getEpisodeQuestion(characters, allEpisodes);
+    if (availableCharacters.length === 0) {
+      navigator.navigate("Results");
+      return;
+    }
+
+    const question = getEpisodeQuestion(availableCharacters, allEpisodes);
     setQuestion(question);
 
     const allAnswers = question.wrongAnswers.concat(question.correctAnswer);
@@ -48,6 +69,12 @@ export const TriviaScreen = () => {
   const handleAnswer = (answer: string) => {
     if (questionNumber >= TOTAL_QUESTIONS) {
       navigator.navigate("Results");
+      return;
+    }
+
+    if (question) {
+      const questionCharacterId = question.id.replace("firstEpisode", "");
+      removeCharacter(questionCharacterId);
     }
 
     setQuestionNumber((prev) => prev + 1);
@@ -78,14 +105,6 @@ export const TriviaScreen = () => {
       )}
       <Text>Score: {score}</Text>
       <Text>{feedback}</Text>
-      <Text>
-        {characters.map((char) => (
-          <Text>
-            {char.name}
-            {"\n"}
-          </Text>
-        ))}
-      </Text>
     </ScrollView>
   );
 };
