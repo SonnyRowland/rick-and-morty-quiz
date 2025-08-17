@@ -17,7 +17,13 @@ export type EpisodeType = {
   characters: { id: string }[];
 };
 
-export type QuestionType = "firstEpisode";
+export type LocationType = {
+  id: string;
+  name: string;
+  residents: { id: string; name: string }[];
+};
+
+export type QuestionType = "firstEpisode" | "rightLocation";
 
 export type Difficulty = "easy" | "medium" | "hard";
 

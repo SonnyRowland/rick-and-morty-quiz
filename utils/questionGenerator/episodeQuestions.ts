@@ -25,7 +25,7 @@ export const getEpisodeQuestion = (
   );
 
   return {
-    id: `firstEpisode${targetChar.id}`,
+    id: targetChar.id,
     type: "firstEpisode",
     question: `Which episode did ${targetChar.name} first appear in?`,
     image: targetChar.image,

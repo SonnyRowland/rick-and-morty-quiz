@@ -3,14 +3,17 @@ import { Button, Text } from "react-native";
 import { useGame } from "../context/GameContext";
 import { NavigationProp } from "../types";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useCallback } from "react";
 
 export const DifficultyScreen = () => {
   const navigation = useNavigation<NavigationProp>();
   const { difficulty, setDifficulty, resetGame } = useGame();
 
-  useFocusEffect(() => {
-    resetGame();
-  });
+  useFocusEffect(
+    useCallback(() => {
+      resetGame();
+    }, [resetGame])
+  );
 
   return (
     <>
