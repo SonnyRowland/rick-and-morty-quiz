@@ -9,6 +9,8 @@ import { GameQuestion, NavigationProp } from "../types";
 import { useGame } from "../context/GameContext";
 import { TOTAL_QUESTIONS } from "../constants";
 import { useNavigation } from "@react-navigation/native";
+import { getLocationQuestion } from "../utils/questionGenerator/locationQuestions";
+import { useAllLocations } from "../hooks/useAllLocations";
 
 export const TriviaScreen = () => {
   const {
@@ -28,6 +30,7 @@ export const TriviaScreen = () => {
 
   const { allCharacters } = useAllCharacters();
   const { allEpisodes } = useAllEpisodes();
+  const { allLocations } = useAllLocations();
 
   useEffect(() => {
     if (allCharacters.length > 0 && allEpisodes.length > 0) {
@@ -57,10 +60,17 @@ export const TriviaScreen = () => {
       return;
     }
 
-    const question = getEpisodeQuestion(availableCharacters, allEpisodes);
-    setQuestion(question);
+    let newQuestion: GameQuestion;
+    if (Math.random() < 0.5) {
+      newQuestion = getEpisodeQuestion(availableCharacters, allEpisodes);
+    } else {
+      newQuestion = getLocationQuestion(availableCharacters, allLocations);
+    }
 
-    const allAnswers = question.wrongAnswers.concat(question.correctAnswer);
+    setQuestion(newQuestion);
+    const allAnswers = newQuestion.wrongAnswers.concat(
+      newQuestion.correctAnswer
+    );
     setAnswers(allAnswers.sort(() => 0.5 - Math.random()));
 
     setFeedback("");
