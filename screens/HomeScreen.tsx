@@ -1,10 +1,12 @@
-import { Button } from "react-native";
+import { Button, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { NavigationProp } from "../types";
+import { useGame } from "../context/GameContext";
 
 export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProp>();
+  const { allCharacters, allLocations, allEpisodes } = useGame();
 
   return (
     <>

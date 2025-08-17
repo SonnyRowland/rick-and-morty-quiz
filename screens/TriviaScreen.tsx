@@ -1,24 +1,21 @@
 import { Button, ScrollView, Text } from "react-native";
 import { useEffect, useState } from "react";
 
-import { useAllCharacters } from "../hooks/useAllCharacters";
 import { getCharacters } from "../utils/characterFilters";
-import { useAllEpisodes } from "../hooks/useAllEpisodes";
 import { getEpisodeQuestion } from "../utils/questionGenerator/episodeQuestions";
 import { GameQuestion, NavigationProp } from "../types";
 import { useGame } from "../context/GameContext";
 import { TOTAL_QUESTIONS } from "../constants";
 import { useNavigation } from "@react-navigation/native";
 import { getLocationQuestion } from "../utils/questionGenerator/locationQuestions";
-import { useAllLocations } from "../hooks/useAllLocations";
 
 export const TriviaScreen = () => {
   const {
-    difficulty,
     score,
     setScore,
+    allEpisodes,
+    allLocations,
     availableCharacters,
-    setAvailableCharacters,
     removeCharacter,
   } = useGame();
   const navigator = useNavigation<NavigationProp>();
@@ -28,38 +25,12 @@ export const TriviaScreen = () => {
   const [feedback, setFeedback] = useState<string>("");
   const [questionNumber, setQuestionNumber] = useState(1);
 
-  const { allCharacters } = useAllCharacters();
-  const { allEpisodes } = useAllEpisodes();
-  const { allLocations } = useAllLocations();
-
   useEffect(() => {
-    if (allCharacters.length > 0 && allEpisodes.length > 0) {
-      const characters = getCharacters(allCharacters, difficulty);
-      setAvailableCharacters(characters);
-      setQuestionNumber(1);
-    }
-  }, [allCharacters, allEpisodes, difficulty]);
-
-  useEffect(() => {
-    if (availableCharacters.length > 0 && allEpisodes.length > 0) {
-      generateNewQuestion();
-    }
-  }, [availableCharacters, allEpisodes]);
-
-  if (
-    allCharacters.length === 0 ||
-    allEpisodes.length === 0 ||
-    availableCharacters.length === 0
-  ) {
-    return <Text>Loading...</Text>;
-  }
+    setQuestionNumber(1);
+    generateNewQuestion();
+  }, []);
 
   const generateNewQuestion = () => {
-    if (availableCharacters.length === 0) {
-      navigator.navigate("Results");
-      return;
-    }
-
     let newQuestion: GameQuestion;
     if (Math.random() < 0.5) {
       newQuestion = getEpisodeQuestion(availableCharacters, allEpisodes);
