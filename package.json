@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@apollo/client": "^3.13.9",
+    "@expo/html-elements": "0.4.2",
     "@gluestack-ui/button": "^1.0.14",
     "@gluestack-ui/icon": "^0.1.27",
     "@gluestack-ui/nativewind-utils": "^1.0.26",
     "@gluestack-ui/overlay": "^0.1.22",
+    "@gluestack-ui/themed": "^1.1.73",
     "@gluestack-ui/toast": "^1.0.9",
     "@react-navigation/elements": "^2.6.3",
     "@react-navigation/native": "^7.1.17",
