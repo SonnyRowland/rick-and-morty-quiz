@@ -3,19 +3,23 @@ import { useEffect, useState } from "react";
 
 import { CharacterType } from "@/types";
 import { GET_CHARACTERS_BY_FILTER } from "@/graphql/queries/characters";
-import client from "@/graphql/apolloClient";
 import { useGame } from "@/context/GameContext";
 import { useLazyQuery } from "@apollo/client";
-import { Input, InputField } from "@/components/ui/input";
+import { Input, InputField, InputSlot, InputIcon } from "@/components/ui/input";
 import { Button, ButtonText } from "@/components/ui/button";
 import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { VStack } from "@/components/ui/vstack";
+import { CharacterCard } from "@/components/CharacterCard";
+import { styles } from "@/styles/CharactersScreen.styles";
+import { CloseIcon } from "@/components/ui/icon";
+import { Spinner } from "@/components/ui/spinner";
 
 export const CharactersScreen = () => {
   const { allCharacters } = useGame();
 
   const [characters, setCharacters] = useState<CharacterType[]>([]);
   const [filter, setFilter] = useState("");
+  const [clearing, setClearing] = useState(false);
 
   const [getCharacters, { loading, data }] = useLazyQuery(
     GET_CHARACTERS_BY_FILTER
@@ -27,6 +31,15 @@ export const CharactersScreen = () => {
     } else {
       await getCharacters({ variables: { filter: { name: filter } } });
     }
+  };
+
+  const clearAllFilters = () => {
+    setClearing(true);
+    setFilter("");
+    setTimeout(() => {
+      setCharacters(allCharacters);
+      setClearing(false);
+    }, 0);
   };
 
   useEffect(() => {
@@ -49,18 +62,32 @@ export const CharactersScreen = () => {
               onSubmitEditing={resetCharacters}
               autoCorrect={false}
             />
+            <InputSlot className="pr-3" onPress={clearAllFilters}>
+              <InputIcon as={CloseIcon} />
+            </InputSlot>
           </Input>
           <Button onPress={resetCharacters}>
             <ButtonText>Filter By Name</ButtonText>
           </Button>
         </VStack>
       </ScreenWrapper>
-      {loading && <Text>Loading...</Text>}
-      {characters.length === 0 && data && (
-        <Text>No characters exist with that name</Text>
+      {(loading || clearing) && (
+        <ScreenWrapper>
+          <Spinner />
+        </ScreenWrapper>
       )}
-      {!loading &&
-        characters.map((char) => <Text key={char.id}>{char.name}</Text>)}
+      {characters.length === 0 && data && !clearing && filter.trim() !== "" && (
+        <ScreenWrapper>
+          <Text>No characters exist with that name!</Text>
+        </ScreenWrapper>
+      )}
+      {!loading && !clearing && (
+        <VStack style={styles.stack}>
+          {characters.map((char) => (
+            <CharacterCard key={char.id} name={char.name} image={char.image} />
+          ))}
+        </VStack>
+      )}
     </ScrollView>
   );
 };
