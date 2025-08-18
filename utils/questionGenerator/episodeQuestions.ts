@@ -21,7 +21,7 @@ export const getEpisodeQuestion = (
     (episode) => episode.id !== firstEpisode.id
   );
   const wrongAnswers = getRandomItems(otherEpisodes, 3).map(
-    (episode) => episode.episode
+    (episode) => episode.name
   );
 
   return {
@@ -29,7 +29,7 @@ export const getEpisodeQuestion = (
     type: "firstEpisode",
     question: `Which episode did ${targetChar.name} first appear in?`,
     image: targetChar.image,
-    correctAnswer: firstEpisode.episode,
+    correctAnswer: firstEpisode.name,
     wrongAnswers,
   };
 };
