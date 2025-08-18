@@ -45,10 +45,14 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
+  useEffect(() => {
+    setAvailableCharacters(getCharacters(allCharacters, difficulty));
+  }, [allCharacters, difficulty]);
+
   const resetGame = useCallback(() => {
     setScore(0);
     setAvailableCharacters(getCharacters(allCharacters, difficulty));
-  }, [difficulty]);
+  }, [allCharacters, difficulty]);
 
   return (
     <GameContext.Provider
