@@ -1,4 +1,4 @@
-import { Text } from "react-native";
+import { Image, Text } from "react-native";
 import { useEffect, useState } from "react";
 import { Button, ButtonText } from "@/components/ui/button";
 
@@ -78,6 +78,7 @@ export const TriviaScreen = () => {
           <Box style={{ height: 40 }}>
             <Text style={{ textAlign: "center" }}>{question?.question}</Text>
           </Box>
+          <Image source={{ uri: question.image }} style={styles.image} />
           {answers.map((answer, index) => (
             <Button
               key={index}

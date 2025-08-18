@@ -1,8 +1,10 @@
 import { Button, ButtonText } from "@/components/ui/button";
 import { useNavigation } from "@react-navigation/native";
+import { Image } from "react-native";
 
 import { NavigationProp } from "../types";
 import { ScreenWrapper } from "@/components/ScreenWrapper";
+import { styles } from "@/styles/HomeScreen.styles";
 
 export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProp>();
@@ -10,6 +12,10 @@ export const HomeScreen = () => {
   return (
     <>
       <ScreenWrapper>
+        <Image
+          source={require("@/assets/images/logo.png")}
+          style={styles.image}
+        />
         <Button onPress={() => navigation.navigate("Difficulty")}>
           <ButtonText>Start Game</ButtonText>
         </Button>
