@@ -13,7 +13,8 @@ import { Box } from "@/components/ui/box";
 
 export const DifficultyScreen = () => {
   const navigation = useNavigation<NavigationProp>();
-  const { difficulty, setDifficulty, resetGame } = useGame();
+  const { difficulty, setDifficulty, resetGame, availableCharacters } =
+    useGame();
 
   useFocusEffect(
     useCallback(() => {
@@ -50,7 +51,7 @@ export const DifficultyScreen = () => {
           {difficultyDescriptions[difficulty]}
         </Text>
         <Text style={{ textAlign: "center" }}>
-          Test your knowledge with {difficultyNumOfChars[difficulty]} characters
+          Test your knowledge with {availableCharacters.length} characters
         </Text>
       </Box>
 

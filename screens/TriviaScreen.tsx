@@ -21,6 +21,7 @@ export const TriviaScreen = () => {
     allLocations,
     availableCharacters,
     removeCharacter,
+    resetGame,
   } = useGame();
   const navigator = useNavigation<NavigationProp>();
 
@@ -30,6 +31,7 @@ export const TriviaScreen = () => {
   const [questionNumber, setQuestionNumber] = useState(1);
 
   useEffect(() => {
+    resetGame();
     setQuestionNumber(1);
     generateNewQuestion();
   }, []);
@@ -53,7 +55,10 @@ export const TriviaScreen = () => {
 
   const handleAnswer = (answer: string) => {
     if (questionNumber >= TOTAL_QUESTIONS) {
-      navigator.navigate("Results");
+      navigator.reset({
+        index: 0,
+        routes: [{ name: "Results" }],
+      });
       return;
     }
 
