@@ -19,6 +19,7 @@ export const LoadingScreen = () => {
   const { allLocations } = useAllLocations();
   const { allEpisodes } = useAllEpisodes();
 
+  // initialises values in GameContext
   useEffect(() => {
     if (
       allCharacters.length !== 0 &&
