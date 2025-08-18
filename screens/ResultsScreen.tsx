@@ -1,4 +1,5 @@
-import { Text, Button } from "react-native";
+import { Text } from "react-native";
+import { Button, ButtonText } from "@/components/ui/button";
 import { TOTAL_QUESTIONS } from "../constants";
 import { useGame } from "../context/GameContext";
 import { useNavigation } from "@react-navigation/native";
@@ -21,7 +22,9 @@ export const ResultsScreen = () => {
       <Text>
         Final score: {score} out of {TOTAL_QUESTIONS}
       </Text>
-      <Button title="Home" onPress={handleHomePress} />
+      <Button onPress={handleHomePress}>
+        <ButtonText>Home</ButtonText>
+      </Button>
     </>
   );
 };

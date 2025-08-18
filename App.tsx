@@ -1,4 +1,6 @@
 import { ApolloProvider } from "@apollo/client";
+import "@/global.css";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { StyleSheet } from "react-native";
 
 import client from "./graphql/apolloClient";
@@ -7,19 +9,12 @@ import { GameProvider } from "./context/GameContext";
 
 export default function App() {
   return (
-    <ApolloProvider client={client}>
-      <GameProvider>
-        <Navigation />
-      </GameProvider>
-    </ApolloProvider>
+    <GluestackUIProvider mode="light">
+      <ApolloProvider client={client}>
+        <GameProvider>
+          <Navigation />
+        </GameProvider>
+      </ApolloProvider>
+    </GluestackUIProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

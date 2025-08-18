@@ -4,6 +4,7 @@ import {
   useContext,
   useEffect,
   useState,
+  useCallback,
 } from "react";
 
 import { Difficulty, CharacterType, EpisodeType, LocationType } from "../types";
@@ -44,12 +45,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
-  const resetGame = () => {
+  const resetGame = useCallback(() => {
     setScore(0);
-    setAvailableCharacters(getCharacters(allCharacters, difficulty));
-  };
-
-  useEffect(() => {
     setAvailableCharacters(getCharacters(allCharacters, difficulty));
   }, [difficulty]);
 

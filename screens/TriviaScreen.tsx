@@ -1,7 +1,7 @@
-import { Button, ScrollView, Text } from "react-native";
+import { ScrollView, Text } from "react-native";
 import { useEffect, useState } from "react";
+import { Button, ButtonText } from "@/components/ui/button";
 
-import { getCharacters } from "../utils/characterFilters";
 import { getEpisodeQuestion } from "../utils/questionGenerator/episodeQuestions";
 import { GameQuestion, NavigationProp } from "../types";
 import { useGame } from "../context/GameContext";
@@ -76,11 +76,9 @@ export const TriviaScreen = () => {
         <>
           <Text>{question?.question}</Text>
           {answers.map((answer, index) => (
-            <Button
-              key={index}
-              title={answer}
-              onPress={() => handleAnswer(answer)}
-            />
+            <Button key={index} onPress={() => handleAnswer(answer)}>
+              <ButtonText>{answer}</ButtonText>
+            </Button>
           ))}
         </>
       )}
