@@ -5,7 +5,7 @@ import { Text } from "react-native";
 
 import { useGame } from "../context/GameContext";
 import { NavigationProp } from "@/types";
-import { difficultyDescriptions } from "@/constants";
+import { difficultyDescriptions, difficultyNumOfChars } from "@/constants";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useCallback } from "react";
 import { ScreenWrapper } from "@/components/ScreenWrapper";
@@ -45,9 +45,12 @@ export const DifficultyScreen = () => {
         </Button>
       </VStack>
 
-      <Box style={{ height: 60 }}>
-        <Text style={{ textAlign: "center", marginVertical: 20 }}>
+      <Box style={{ height: 60, justifyContent: "center", gap: 4 }}>
+        <Text style={{ textAlign: "center" }}>
           {difficultyDescriptions[difficulty]}
+        </Text>
+        <Text style={{ textAlign: "center" }}>
+          Test your knowledge with {difficultyNumOfChars[difficulty]} characters
         </Text>
       </Box>
 

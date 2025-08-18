@@ -1,4 +1,4 @@
-import { ScrollView, Text } from "react-native";
+import { Text } from "react-native";
 import { useEffect, useState } from "react";
 import { Button, ButtonText } from "@/components/ui/button";
 
@@ -8,6 +8,10 @@ import { useGame } from "../context/GameContext";
 import { TOTAL_QUESTIONS } from "../constants";
 import { useNavigation } from "@react-navigation/native";
 import { getLocationQuestion } from "../utils/questionGenerator/locationQuestions";
+import { ScreenWrapper } from "@/components/ScreenWrapper";
+import { Heading } from "@/components/ui/heading";
+import { styles } from "@/styles/TriviaScreen.styles";
+import { Box } from "@/components/ui/box";
 
 export const TriviaScreen = () => {
   const {
@@ -61,29 +65,32 @@ export const TriviaScreen = () => {
     setQuestionNumber((prev) => prev + 1);
     if (answer === question?.correctAnswer) {
       setScore(score + 1);
-      setFeedback("CORRECT!");
-    } else {
-      setFeedback("WRONG WRONG WRONG");
     }
 
     generateNewQuestion();
   };
 
   return (
-    <ScrollView>
-      <Text>Current Question: {questionNumber}</Text>
+    <ScreenWrapper>
+      <Heading>Question {questionNumber}</Heading>
       {question && (
         <>
-          <Text>{question?.question}</Text>
+          <Box style={{ height: 40 }}>
+            <Text style={{ textAlign: "center" }}>{question?.question}</Text>
+          </Box>
           {answers.map((answer, index) => (
-            <Button key={index} onPress={() => handleAnswer(answer)}>
-              <ButtonText>{answer}</ButtonText>
+            <Button
+              key={index}
+              onPress={() => handleAnswer(answer)}
+              style={styles.button}
+            >
+              <ButtonText style={styles.buttonText}>{answer}</ButtonText>
             </Button>
           ))}
         </>
       )}
       <Text>Score: {score}</Text>
       <Text>{feedback}</Text>
-    </ScrollView>
+    </ScreenWrapper>
   );
 };
