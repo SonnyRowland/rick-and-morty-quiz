@@ -1,4 +1,5 @@
-import { Button, Text } from "react-native";
+import { Text } from "react-native";
+import { Button, ButtonText } from "@/components/ui/button";
 
 import { useGame } from "../context/GameContext";
 import { NavigationProp } from "../types";
@@ -19,13 +20,18 @@ export const DifficultyScreen = () => {
     <>
       <Text>Select difficulty</Text>
       <Text>Current difficulty: {difficulty}</Text>
-      <Button title="easy" onPress={() => setDifficulty("easy")} />
-      <Button title="medium" onPress={() => setDifficulty("medium")} />
-      <Button title="hard" onPress={() => setDifficulty("hard")} />
-      <Button
-        title="Start Game"
-        onPress={() => navigation.navigate("Trivia")}
-      />
+      <Button onPress={() => setDifficulty("easy")}>
+        <ButtonText>Easy</ButtonText>
+      </Button>
+      <Button onPress={() => setDifficulty("medium")}>
+        <ButtonText>Medium</ButtonText>
+      </Button>
+      <Button onPress={() => setDifficulty("hard")}>
+        <ButtonText>Hard</ButtonText>
+      </Button>
+      <Button onPress={() => navigation.navigate("Trivia")}>
+        <ButtonText>Start Game</ButtonText>
+      </Button>
     </>
   );
 };
