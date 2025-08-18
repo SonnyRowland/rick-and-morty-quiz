@@ -12,6 +12,7 @@ import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { Heading } from "@/components/ui/heading";
 import { styles } from "@/styles/TriviaScreen.styles";
 import { Box } from "@/components/ui/box";
+import { GameScreenModal } from "@/components/GameScreenModal";
 
 export const TriviaScreen = () => {
   const {
@@ -27,8 +28,9 @@ export const TriviaScreen = () => {
 
   const [question, setQuestion] = useState<GameQuestion | null>(null);
   const [answers, setAnswers] = useState<string[]>([]);
-  const [feedback, setFeedback] = useState<string>("");
   const [questionNumber, setQuestionNumber] = useState(1);
+  const [showModal, setShowModal] = useState(false);
+  const [result, setResult] = useState(false);
 
   useEffect(() => {
     resetGame();
@@ -49,8 +51,6 @@ export const TriviaScreen = () => {
       newQuestion.correctAnswer
     );
     setAnswers(allAnswers.sort(() => 0.5 - Math.random()));
-
-    setFeedback("");
   };
 
   const handleAnswer = (answer: string) => {
@@ -63,20 +63,30 @@ export const TriviaScreen = () => {
     }
 
     if (question) {
-      const questionCharacterId = question.id.replace("firstEpisode", "");
+      const questionCharacterId = question.id;
       removeCharacter(questionCharacterId);
     }
 
     setQuestionNumber((prev) => prev + 1);
     if (answer === question?.correctAnswer) {
+      setResult(true);
       setScore(score + 1);
+    } else {
+      setResult(false);
     }
+
+    setShowModal(true);
 
     generateNewQuestion();
   };
 
   return (
     <ScreenWrapper>
+      <GameScreenModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        result={result}
+      />
       <Heading>Question {questionNumber}</Heading>
       {question && (
         <>
@@ -96,7 +106,6 @@ export const TriviaScreen = () => {
         </>
       )}
       <Text>Score: {score}</Text>
-      <Text>{feedback}</Text>
     </ScreenWrapper>
   );
 };
