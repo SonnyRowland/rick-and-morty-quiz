@@ -18,6 +18,8 @@ export const TriviaScreen = () => {
   const {
     score,
     setScore,
+    questionNumber,
+    setQuestionNumber,
     allEpisodes,
     allLocations,
     availableCharacters,
@@ -28,7 +30,7 @@ export const TriviaScreen = () => {
 
   const [question, setQuestion] = useState<GameQuestion | null>(null);
   const [answers, setAnswers] = useState<string[]>([]);
-  const [questionNumber, setQuestionNumber] = useState(1);
+  const [correctAnswer, setCorrectAnswer] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [result, setResult] = useState(false);
 
@@ -54,30 +56,27 @@ export const TriviaScreen = () => {
   };
 
   const handleAnswer = (answer: string) => {
-    if (questionNumber >= TOTAL_QUESTIONS) {
-      navigator.reset({
-        index: 0,
-        routes: [{ name: "Results" }],
-      });
-      return;
-    }
-
     if (question) {
       const questionCharacterId = question.id;
       removeCharacter(questionCharacterId);
     }
 
-    setQuestionNumber((prev) => prev + 1);
+    setQuestionNumber(questionNumber + 1);
+
     if (answer === question?.correctAnswer) {
+      setCorrectAnswer("");
       setResult(true);
       setScore(score + 1);
     } else {
       setResult(false);
+      setCorrectAnswer(question?.correctAnswer || "");
     }
 
     setShowModal(true);
 
-    generateNewQuestion();
+    if (questionNumber < TOTAL_QUESTIONS) {
+      generateNewQuestion();
+    }
   };
 
   return (
@@ -86,11 +85,12 @@ export const TriviaScreen = () => {
         showModal={showModal}
         setShowModal={setShowModal}
         result={result}
+        correctAnswer={correctAnswer}
       />
       <Heading>Question {questionNumber}</Heading>
       {question && (
         <>
-          <Box style={{ height: 40 }}>
+          <Box>
             <Text style={{ textAlign: "center" }}>{question?.question}</Text>
           </Box>
           <Image source={{ uri: question.image }} style={styles.image} />
@@ -105,7 +105,7 @@ export const TriviaScreen = () => {
           ))}
         </>
       )}
-      <Text>Score: {score}</Text>
+      <Heading>Score: {score}</Heading>
     </ScreenWrapper>
   );
 };

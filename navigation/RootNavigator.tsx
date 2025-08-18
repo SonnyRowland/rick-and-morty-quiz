@@ -9,8 +9,11 @@ import { DifficultyScreen } from "../screens/DifficultyScreen";
 
 const RootStack = createNativeStackNavigator({
   screens: {
-    Loading: { screen: LoadingScreen },
-    Home: { screen: HomeScreen },
+    Loading: {
+      screen: LoadingScreen,
+      options: { headerShown: false },
+    },
+    Home: { screen: HomeScreen, options: { headerShown: false } },
     Difficulty: { screen: DifficultyScreen },
     Trivia: { screen: TriviaScreen },
     Results: { screen: ResultsScreen },
