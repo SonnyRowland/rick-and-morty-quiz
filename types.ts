@@ -39,10 +39,9 @@ export type GameQuestion = {
 export type RootStackParamList = {
   Loading: undefined;
   Home: undefined;
-  Game: undefined;
-  Results: undefined;
-  Trivia: undefined;
   Difficulty: undefined;
+  Trivia: undefined;
+  Results: undefined;
   Characters: undefined;
 };
 
