@@ -15,6 +15,8 @@ type GameContextType = {
   setDifficulty: (difficulty: Difficulty) => void;
   score: number;
   setScore: (score: number) => void;
+  questionNumber: number;
+  setQuestionNumber: (num: number) => void;
   allCharacters: CharacterType[];
   setAllCharacters: (characters: CharacterType[]) => void;
   allEpisodes: EpisodeType[];
@@ -32,6 +34,7 @@ const GameContext = createContext<GameContextType | undefined>(undefined);
 export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [difficulty, setDifficulty] = useState<Difficulty>("easy");
   const [score, setScore] = useState(0);
+  const [questionNumber, setQuestionNumber] = useState(1);
   const [allCharacters, setAllCharacters] = useState<CharacterType[]>([]);
   const [allEpisodes, setAllEpisodes] = useState<EpisodeType[]>([]);
   const [allLocations, setAllLocations] = useState<LocationType[]>([]);
@@ -51,6 +54,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 
   const resetGame = useCallback(() => {
     setScore(0);
+    setQuestionNumber(1);
     setAvailableCharacters(getCharacters(allCharacters, difficulty));
   }, [allCharacters, difficulty]);
 
@@ -61,6 +65,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         setDifficulty,
         score,
         setScore,
+        questionNumber,
+        setQuestionNumber,
         allCharacters,
         setAllCharacters,
         allEpisodes,

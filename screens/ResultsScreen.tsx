@@ -18,6 +18,14 @@ export const ResultsScreen = () => {
     });
   };
 
+  const handleTryAgainPress = () => {
+    resetGame();
+    navigator.reset({
+      index: 0,
+      routes: [{ name: "Trivia" }],
+    });
+  };
+
   return (
     <>
       <ScreenWrapper>
@@ -26,9 +34,7 @@ export const ResultsScreen = () => {
           {score} out of {TOTAL_QUESTIONS}
         </Heading>
         <Button>
-          <ButtonText onPress={() => navigator.navigate("Trivia")}>
-            Try Again
-          </ButtonText>
+          <ButtonText onPress={handleTryAgainPress}>Try Again</ButtonText>
         </Button>
         <Button onPress={handleHomePress}>
           <ButtonText>Home</ButtonText>

@@ -73,7 +73,7 @@ export const CharactersScreen = () => {
       </ScreenWrapper>
       {(loading || clearing) && (
         <ScreenWrapper>
-          <Spinner />
+          <Spinner size="large" />
         </ScreenWrapper>
       )}
       {characters.length === 0 && data && !clearing && filter.trim() !== "" && (
