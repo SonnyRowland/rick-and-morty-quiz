@@ -1,9 +1,10 @@
-import { Text } from "react-native";
 import { Button, ButtonText } from "@/components/ui/button";
 import { TOTAL_QUESTIONS } from "../constants";
 import { useGame } from "../context/GameContext";
 import { useNavigation } from "@react-navigation/native";
 import { NavigationProp } from "../types";
+import { ScreenWrapper } from "@/components/ScreenWrapper";
+import { Heading } from "@/components/ui/heading";
 
 export const ResultsScreen = () => {
   const { score, resetGame } = useGame();
@@ -19,12 +20,20 @@ export const ResultsScreen = () => {
 
   return (
     <>
-      <Text>
-        Final score: {score} out of {TOTAL_QUESTIONS}
-      </Text>
-      <Button onPress={handleHomePress}>
-        <ButtonText>Home</ButtonText>
-      </Button>
+      <ScreenWrapper>
+        <Heading size="xl">Final score:</Heading>
+        <Heading size="3xl">
+          {score} out of {TOTAL_QUESTIONS}
+        </Heading>
+        <Button>
+          <ButtonText onPress={() => navigator.navigate("Trivia")}>
+            Try Again
+          </ButtonText>
+        </Button>
+        <Button onPress={handleHomePress}>
+          <ButtonText>Home</ButtonText>
+        </Button>
+      </ScreenWrapper>
     </>
   );
 };
