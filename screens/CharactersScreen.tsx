@@ -25,6 +25,7 @@ export const CharactersScreen = () => {
     GET_CHARACTERS_BY_FILTER
   );
 
+  // calls api when filter submitted by user
   const resetCharacters = async () => {
     if (filter.trim() === "") {
       setCharacters(allCharacters);
@@ -42,6 +43,7 @@ export const CharactersScreen = () => {
     }, 0);
   };
 
+  // renders all characters on first load
   useEffect(() => {
     if (data?.characters?.results) {
       setCharacters(data.characters.results);

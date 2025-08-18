@@ -26,7 +26,6 @@ export const TriviaScreen = () => {
     removeCharacter,
     resetGame,
   } = useGame();
-  const navigator = useNavigation<NavigationProp>();
 
   const [question, setQuestion] = useState<GameQuestion | null>(null);
   const [answers, setAnswers] = useState<string[]>([]);
@@ -55,6 +54,7 @@ export const TriviaScreen = () => {
     setAnswers(allAnswers.sort(() => 0.5 - Math.random()));
   };
 
+  // shows feedback in a modal and increases score accordingly
   const handleAnswer = (answer: string) => {
     if (question) {
       const questionCharacterId = question.id;
