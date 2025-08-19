@@ -1,8 +1,8 @@
-import { Button, ButtonText } from "@/components/ui/button";
 import { useNavigation } from "@react-navigation/native";
 import { Image } from "expo-image";
 
-import { NavigationProp } from "../types";
+import { Button, ButtonText } from "@/components/ui/button";
+import { NavigationProp } from "@/types";
 import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { styles } from "@/styles/HomeScreen.styles";
 

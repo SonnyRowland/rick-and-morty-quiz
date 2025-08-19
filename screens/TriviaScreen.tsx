@@ -1,12 +1,11 @@
 import { Image, Text } from "react-native";
 import { useEffect, useState } from "react";
-import { Button, ButtonText } from "@/components/ui/button";
 
-import { getEpisodeQuestion } from "../utils/questionGenerator/episodeQuestions";
-import { GameQuestion, NavigationProp } from "../types";
-import { useGame } from "../context/GameContext";
-import { TOTAL_QUESTIONS } from "../constants";
-import { useNavigation } from "@react-navigation/native";
+import { Button, ButtonText } from "@/components/ui/button";
+import { getEpisodeQuestion } from "@/utils/questionGenerator/episodeQuestions";
+import { GameQuestion, NavigationProp } from "@/types";
+import { useGame } from "@/context/GameContext";
+import { TOTAL_QUESTIONS } from "@/constants";
 import { getLocationQuestion } from "../utils/questionGenerator/locationQuestions";
 import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { Heading } from "@/components/ui/heading";

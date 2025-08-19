@@ -56,11 +56,10 @@ export const CharactersScreen = () => {
     <ScrollView>
       <ScreenWrapper>
         <VStack style={{ gap: 20 }}>
-          <Input>
+          <Input style={styles.input}>
             <InputField
               value={filter}
               onChangeText={(text) => setFilter(text)}
-              style={{ backgroundColor: "white" }}
               onSubmitEditing={resetCharacters}
               autoCorrect={false}
             />

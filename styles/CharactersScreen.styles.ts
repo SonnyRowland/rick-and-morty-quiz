@@ -5,4 +5,8 @@ export const styles = StyleSheet.create({
     gap: 12,
     alignItems: "center",
   },
+  input: {
+    backgroundColor: "white",
+    width: 200,
+  },
 });
