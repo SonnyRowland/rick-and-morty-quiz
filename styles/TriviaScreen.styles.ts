@@ -11,8 +11,4 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     flexShrink: 1,
   },
-  image: {
-    height: 200,
-    width: 200,
-  },
 });
