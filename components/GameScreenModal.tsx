@@ -35,6 +35,8 @@ export const GameScreenModal = (props: GameScreenModalProps) => {
         setShowModal(false);
       }}
       size="md"
+      closeOnOverlayClick={false}
+      isKeyboardDismissable={false}
     >
       <ModalBackdrop />
       <ModalContent>
