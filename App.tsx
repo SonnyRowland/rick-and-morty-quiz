@@ -1,7 +1,6 @@
 import { ApolloProvider } from "@apollo/client";
 import "@/global.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { StyleSheet } from "react-native";
 
 import client from "./graphql/apolloClient";
 import { Navigation } from "./navigation/RootNavigator";
