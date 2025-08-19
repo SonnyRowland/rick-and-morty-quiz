@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { EpisodeType } from "../types";
-import client from "../graphql/apolloClient";
-import { GET_EPISODES_BY_PAGE } from "../graphql/queries/episodes";
+
+import { EpisodeType } from "@/types";
+import client from "@/graphql/apolloClient";
+import { GET_EPISODES_BY_PAGE } from "@/graphql/queries/episodes";
 
 const TOTAL_PAGES = 3;
 

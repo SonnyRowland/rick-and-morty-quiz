@@ -1,13 +1,13 @@
-import { Button, ButtonText } from "@/components/ui/button";
-import { Heading } from "@/components/ui/heading";
-import { VStack } from "@/components/ui/vstack";
 import { Text } from "react-native";
-
-import { useGame } from "../context/GameContext";
-import { NavigationProp } from "@/types";
-import { difficultyDescriptions, difficultyNumOfChars } from "@/constants";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useCallback } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+
+import { Button, ButtonText } from "@/components/ui/button";
+import { VStack } from "@/components/ui/vstack";
+import { Heading } from "@/components/ui/heading";
+import { useGame } from "@/context/GameContext";
+import { NavigationProp } from "@/types";
+import { difficultyDescriptions } from "@/constants";
 import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { Box } from "@/components/ui/box";
 

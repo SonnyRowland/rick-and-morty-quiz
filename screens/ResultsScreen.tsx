@@ -1,8 +1,9 @@
-import { Button, ButtonText } from "@/components/ui/button";
-import { TOTAL_QUESTIONS } from "../constants";
-import { useGame } from "../context/GameContext";
 import { useNavigation } from "@react-navigation/native";
-import { NavigationProp } from "../types";
+
+import { Button, ButtonText } from "@/components/ui/button";
+import { TOTAL_QUESTIONS } from "@/constants";
+import { useGame } from "@/context/GameContext";
+import { NavigationProp } from "@/types";
 import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { Heading } from "@/components/ui/heading";
 

@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Image } from "expo-image";
 
-import { useAllLocations } from "../hooks/useAllLocations";
-import { useAllCharacters } from "../hooks/useAllCharacters";
-import { useAllEpisodes } from "../hooks/useAllEpisodes";
-import { useGame } from "../context/GameContext";
-import { NavigationProp } from "../types";
+import { useAllLocations } from "@/hooks/useAllLocations";
+import { useAllCharacters } from "@/hooks/useAllCharacters";
+import { useAllEpisodes } from "@/hooks/useAllEpisodes";
+import { useGame } from "@/context/GameContext";
+import { NavigationProp } from "@/types";
 import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { styles } from "@/styles/LoadingScreen.styles";
 import { Spinner } from "@/components/ui/spinner";

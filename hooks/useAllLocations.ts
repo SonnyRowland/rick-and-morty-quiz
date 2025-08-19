@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { LocationType } from "../types";
-import { GET_LOCATIONS_BY_PAGE } from "../graphql/queries/locations";
-import client from "../graphql/apolloClient";
+import { LocationType } from "@/types";
+import { GET_LOCATIONS_BY_PAGE } from "@/graphql/queries/locations";
+import client from "@/graphql/apolloClient";
 
 const TOTAL_PAGES = 7;
 

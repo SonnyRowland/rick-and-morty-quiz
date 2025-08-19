@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import client from "../graphql/apolloClient";
-import { GET_CHARACTERS_BY_PAGE } from "../graphql/queries/characters";
-import { CharacterType } from "../types";
+
+import client from "@/graphql/apolloClient";
+import { GET_CHARACTERS_BY_PAGE } from "@/graphql/queries/characters";
+import { CharacterType } from "@/types";
 
 const TOTAL_PAGES = 42;
 

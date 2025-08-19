@@ -7,8 +7,8 @@ import {
   useCallback,
 } from "react";
 
-import { Difficulty, CharacterType, EpisodeType, LocationType } from "../types";
-import { getCharacters } from "../utils/characterFilters";
+import { Difficulty, CharacterType, EpisodeType, LocationType } from "@/types";
+import { getCharacters } from "@/utils/characterFilters";
 
 type GameContextType = {
   difficulty: Difficulty;
