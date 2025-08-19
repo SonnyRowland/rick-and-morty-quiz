@@ -10,6 +10,7 @@ import { getLocationQuestion } from "../utils/questionGenerator/locationQuestion
 import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { Heading } from "@/components/ui/heading";
 import { styles } from "@/styles/TriviaScreen.styles";
+import { globalStyles } from "@/styles/index.styles";
 import { Box } from "@/components/ui/box";
 import { GameScreenModal } from "@/components/GameScreenModal";
 
@@ -92,7 +93,7 @@ export const TriviaScreen = () => {
           <Box>
             <Text style={{ textAlign: "center" }}>{question?.question}</Text>
           </Box>
-          <Image source={{ uri: question.image }} style={styles.image} />
+          <Image source={{ uri: question.image }} style={globalStyles.image} />
           {answers.map((answer, index) => (
             <Button
               key={index}

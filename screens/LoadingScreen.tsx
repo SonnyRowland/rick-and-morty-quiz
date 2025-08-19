@@ -8,7 +8,7 @@ import { useAllEpisodes } from "@/hooks/useAllEpisodes";
 import { useGame } from "@/context/GameContext";
 import { NavigationProp } from "@/types";
 import { ScreenWrapper } from "@/components/ScreenWrapper";
-import { styles } from "@/styles/LoadingScreen.styles";
+import { globalStyles } from "@/styles/index.styles";
 import { Spinner } from "@/components/ui/spinner";
 
 export const LoadingScreen = () => {
@@ -38,7 +38,7 @@ export const LoadingScreen = () => {
     <ScreenWrapper>
       <Image
         source={require("@/assets/images/logo.png")}
-        style={styles.image}
+        style={globalStyles.image}
         cachePolicy="memory-disk"
       />
       <Spinner size="large" />

@@ -4,7 +4,7 @@ import { Image } from "expo-image";
 import { Button, ButtonText } from "@/components/ui/button";
 import { NavigationProp } from "@/types";
 import { ScreenWrapper } from "@/components/ScreenWrapper";
-import { styles } from "@/styles/HomeScreen.styles";
+import { globalStyles } from "@/styles/index.styles";
 
 export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProp>();
@@ -14,7 +14,7 @@ export const HomeScreen = () => {
       <ScreenWrapper>
         <Image
           source={require("@/assets/images/logo.png")}
-          style={styles.image}
+          style={globalStyles.image}
           cachePolicy="memory-disk"
         />
         <Button onPress={() => navigation.navigate("Difficulty")}>
